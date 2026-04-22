@@ -26,6 +26,22 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
+                    <!-- Validation Error Summary -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <h5 class="alert-heading">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                Please fix the following errors:
+                            </h5>
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    
                     <form action="{{ route('farmer.crops.update', $crop) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -130,18 +146,42 @@
                                     <label for="region" class="form-label">Region *</label>
                                     <select class="form-select @error('region') is-invalid @enderror" id="region" name="region" required>
                                         <option value="">Select Region</option>
-                                        <option value="Abuja" {{ old('region', $crop->region) == 'Abuja' ? 'selected' : '' }}>Abuja</option>
-                                        <option value="Lagos" {{ old('region', $crop->region) == 'Lagos' ? 'selected' : '' }}>Lagos</option>
-                                        <option value="Kano" {{ old('region', $crop->region) == 'Kano' ? 'selected' : '' }}>Kano</option>
-                                        <option value="Rivers" {{ old('region', $crop->region) == 'Rivers' ? 'selected' : '' }}>Rivers</option>
-                                        <option value="Oyo" {{ old('region', $crop->region) == 'Oyo' ? 'selected' : '' }}>Oyo</option>
-                                        <option value="Kaduna" {{ old('region', $crop->region) == 'Kaduna' ? 'selected' : '' }}>Kaduna</option>
-                                        <option value="Delta" {{ old('region', $crop->region) == 'Delta' ? 'selected' : '' }}>Delta</option>
-                                        <option value="Ogun" {{ old('region', $crop->region) == 'Ogun' ? 'selected' : '' }}>Ogun</option>
-                                        <option value="Ondo" {{ old('region', $crop->region) == 'Ondo' ? 'selected' : '' }}>Ondo</option>
-                                        <option value="Edo" {{ old('region', $crop->region) == 'Edo' ? 'selected' : '' }}>Edo</option>
-                                        <option value="Anambra" {{ old('region', $crop->region) == 'Anambra' ? 'selected' : '' }}>Anambra</option>
-                                        <option value="Enugu" {{ old('region', $crop->region) == 'Enugu' ? 'selected' : '' }}>Enugu</option>
+                                        <optgroup label="Mainland Tanzania">
+                                            <option value="Arusha" {{ old('region') == 'Arusha' ? 'selected' : '' }}>Arusha</option>
+                                            <option value="Dar es Salaam" {{ old('region') == 'Dar es Salaam' ? 'selected' : '' }}>Dar es Salaam</option>
+                                            <option value="Dodoma" {{ old('region') == 'Dodoma' ? 'selected' : '' }}>Dodoma</option>
+                                            <option value="Geita" {{ old('region') == 'Geita' ? 'selected' : '' }}>Geita</option>
+                                            <option value="Iringa" {{ old('region') == 'Iringa' ? 'selected' : '' }}>Iringa</option>
+                                            <option value="Kagera" {{ old('region') == 'Kagera' ? 'selected' : '' }}>Kagera</option>
+                                            <option value="Katavi" {{ old('region') == 'Katavi' ? 'selected' : '' }}>Katavi</option>
+                                            <option value="Kigoma" {{ old('region') == 'Kigoma' ? 'selected' : '' }}>Kigoma</option>
+                                            <option value="Kilimanjaro" {{ old('region') == 'Kilimanjaro' ? 'selected' : '' }}>Kilimanjaro</option>
+                                            <option value="Lindi" {{ old('region') == 'Lindi' ? 'selected' : '' }}>Lindi</option>
+                                            <option value="Manyara" {{ old('region') == 'Manyara' ? 'selected' : '' }}>Manyara</option>
+                                            <option value="Mara" {{ old('region') == 'Mara' ? 'selected' : '' }}>Mara</option>
+                                            <option value="Mbeya" {{ old('region') == 'Mbeya' ? 'selected' : '' }}>Mbeya</option>
+                                            <option value="Morogoro" {{ old('region') == 'Morogoro' ? 'selected' : '' }}>Morogoro</option>
+                                            <option value="Mtwara" {{ old('region') == 'Mtwara' ? 'selected' : '' }}>Mtwara</option>
+                                            <option value="Mwanza" {{ old('region') == 'Mwanza' ? 'selected' : '' }}>Mwanza</option>
+                                            <option value="Njombe" {{ old('region') == 'Njombe' ? 'selected' : '' }}>Njombe</option>
+                                            <option value="Pwani" {{ old('region') == 'Pwani' ? 'selected' : '' }}>Pwani (Coast Region)</option>
+                                            <option value="Rukwa" {{ old('region') == 'Rukwa' ? 'selected' : '' }}>Rukwa</option>
+                                            <option value="Ruvuma" {{ old('region') == 'Ruvuma' ? 'selected' : '' }}>Ruvuma</option>
+                                            <option value="Shinyanga" {{ old('region') == 'Shinyanga' ? 'selected' : '' }}>Shinyanga</option>
+                                            <option value="Simiyu" {{ old('region') == 'Simiyu' ? 'selected' : '' }}>Simiyu</option>
+                                            <option value="Singida" {{ old('region') == 'Singida' ? 'selected' : '' }}>Singida</option>
+                                            <option value="Songwe" {{ old('region') == 'Songwe' ? 'selected' : '' }}>Songwe</option>
+                                            <option value="Tabora" {{ old('region') == 'Tabora' ? 'selected' : '' }}>Tabora</option>
+                                            <option value="Tanga" {{ old('region') == 'Tanga' ? 'selected' : '' }}>Tanga</option>
+                                        </optgroup>
+                                        <optgroup label="Zanzibar ">
+                                            <option value="Zanzibar" {{ old('region') == 'Zanzibar' ? 'selected' : '' }}>Zanzibar</option>
+                                            <option value="Kaskazini Unguja" {{ old('region') == 'Kaskazini Unguja' ? 'selected' : '' }}>Kaskazini Unguja (North Unguja)</option>
+                                            <option value="Kusini Unguja" {{ old('region') == 'Kusini Unguja' ? 'selected' : '' }}>Kusini Unguja (South Unguja)</option>
+                                            <option value="Mjini Magharibi" {{ old('region') == 'Mjini Magharibi' ? 'selected' : '' }}>Mjini Magharibi (Urban West)</option>
+                                            <option value="Kaskazini Pemba" {{ old('region') == 'Kaskazini Pemba' ? 'selected' : '' }}>Kaskazini Pemba (North Pemba)</option>
+                                            <option value="Kusini Pemba" {{ old('region') == 'Kusini Pemba' ? 'selected' : '' }}>Kusini Pemba (South Pemba)</option>
+                                        </optgroup> 
                                     </select>
                                     @error('region')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -204,7 +244,8 @@
                             </h5>
                             
                             <div class="form-check form-switch mb-3">
-                                <input class="form-check-input" type="checkbox" id="is_available" name="is_available" 
+                                <input type="hidden" name="is_available" value="0">
+                                <input class="form-check-input" type="checkbox" id="is_available" name="is_available" value="1"
                                        {{ old('is_available', $crop->is_available) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="is_available">
                                     <strong>Available for Sale</strong>

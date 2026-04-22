@@ -23,6 +23,22 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
+                    <!-- Validation Error Summary -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <h5 class="alert-heading">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                Please fix the following errors:
+                            </h5>
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    
                     <form action="{{ route('farmer.crops.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         
@@ -218,7 +234,8 @@
                             </h5>
                             
                             <div class="form-check form-switch mb-3">
-                                <input class="form-check-input" type="checkbox" id="is_available" name="is_available" checked>
+                                <input type="hidden" name="is_available" value="0">
+                                <input class="form-check-input" type="checkbox" id="is_available" name="is_available" value="1" checked>
                                 <label class="form-check-label" for="is_available">
                                     <strong>Available for Sale</strong>
                                     <br>

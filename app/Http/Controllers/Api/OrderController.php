@@ -78,25 +78,33 @@ class OrderController extends Controller
         }
 
         try {
-            // Test Order model instantiation
+            // Test database save operation
             $order = new Order();
+            $order->buyer_id = $user->id;
+            $order->order_number = 'ORD-TEST-' . time();
+            $order->total_amount = 100.00;
+            $order->status = 'pending';
+            
+            // Try to save
+            $result = $order->save();
             
             return response()->json([
                 'success' => true,
-                'message' => 'Order model instantiated successfully',
+                'message' => 'Order created successfully',
                 'data' => [
-                    'order_class' => get_class($order),
-                    'fillable' => $order->getFillable(),
-                    'user_id' => $user->id
+                    'order_id' => $order->id,
+                    'save_result' => $result,
+                    'order_number' => $order->order_number
                 ]
-            ], 200);
+            ], 201);
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Order model instantiation failed: ' . $e->getMessage(),
+                'message' => 'Order creation failed: ' . $e->getMessage(),
                 'file' => $e->getFile(),
-                'line' => $e->getLine()
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
             ], 500);
         }
     }

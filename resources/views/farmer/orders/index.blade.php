@@ -110,20 +110,20 @@
                                         <small class="text-muted">Total Amount</small>
                                     </div>
                                     <div class="d-flex gap-2 justify-content-end">
-                                        <a href="{{ route('farmer.orders.show', $order) }}" class="btn btn-sm btn-outline-primary">
+                                        <a href="{{ route('farmer.orders.show', $order->order) }}" class="btn btn-sm btn-outline-primary">
                                             <i class="fas fa-eye me-1"></i>View Details
                                         </a>
-                                        <a href="{{ route('farmer.chats.start.order', $order) }}" class="btn btn-sm btn-outline-info">
+                                        <a href="{{ route('farmer.chats.start.order', $order->order) }}" class="btn btn-sm btn-outline-info">
                                             <i class="fas fa-comments me-1"></i>Chat
                                         </a>
-                                        @if($order->status === 'pending')
+                                        @if($order->order->status === 'pending')
                                             <button type="button" class="btn btn-sm btn-success" 
-                                                    onclick="confirmOrderFromList({{ $order->id }}, '{ $order->order_number }')">
+                                                    onclick="confirmOrderFromList({{ $order->order->id }}, '{ $order->order->order_number }')">
                                                 <i class="fas fa-check me-1"></i>Confirm
                                             </button>
-                                        @elseif($order->status === 'confirmed')
+                                        @elseif($order->order->status === 'confirmed')
                                             <button type="button" class="btn btn-sm btn-info" 
-                                                    onclick="deliverOrderFromList({{ $order->id }}, '{ $order->order_number }')">
+                                                    onclick="deliverOrderFromList({{ $order->order->id }}, '{ $order->order->order_number }')">
                                                 <i class="fas fa-truck me-1"></i>Deliver
                                             </button>
                                         @endif

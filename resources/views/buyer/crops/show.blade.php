@@ -11,7 +11,7 @@
                 <a href="{{ route('home') }}" class="text-decoration-none">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ route('buyer.crops.browse') }}" class="text-decoration-none">Browse Crops</a>
+                <a href="{{ route('crops.public') }}" class="text-decoration-none">Browse Crops</a>
             </li>
             <li class="breadcrumb-item active">{{ $crop->name }}</li>
         </ol>
@@ -183,7 +183,7 @@
                                                     <h6 class="mb-0 small">{{ $relatedCrop->name }}</h6>
                                                     <small class="text-muted">{{ $relatedCrop->formatted_price }}/kg</small>
                                                 </div>
-                                                <a href="{{ route('buyer.crops.show', $relatedCrop) }}" class="btn btn-sm btn-outline-primary">
+                                                <a href="{{ route('crops.public.show', $relatedCrop) }}" class="btn btn-sm btn-outline-primary">
                                                     View
                                                 </a>
                                             </div>
@@ -195,6 +195,7 @@
                     </div>
                 </div>
             @endif
+        @endif
         </div>
     </div>
 </div>
