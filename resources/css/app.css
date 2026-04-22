@@ -1,0 +1,90 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Pagination Styles */
+.pagination {
+    @apply flex justify-center items-center space-x-2 mt-8;
+}
+
+.pagination .page-item {
+    @apply relative;
+}
+
+.pagination .page-item .page-link {
+    @apply block px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200;
+}
+
+.pagination .page-item.active .page-link {
+    @apply z-10 bg-indigo-600 border-indigo-600 text-white;
+}
+
+.pagination .page-item.disabled .page-link {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+.pagination .page-item.disabled span {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+.pagination .page-item:not(.disabled):not(.active) .page-link:hover {
+    @apply bg-gray-50;
+}
+
+.pagination .page-item:not(.disabled):not(.active) .page-link:focus {
+    @apply ring-2 ring-offset-2 ring-indigo-500;
+}
+
+/* Alternative pagination for simpler layouts */
+.pagination-simple {
+    @apply flex justify-center items-center space-x-2 mt-6;
+}
+
+.pagination-simple li {
+    @apply relative;
+}
+
+.pagination-simple li a,
+.pagination-simple li span {
+    @apply block px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200;
+}
+
+.pagination-simple li.active span {
+    @apply z-10 bg-indigo-600 border-indigo-600 text-white;
+}
+
+.pagination-simple li.disabled span {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+.pagination-simple li:not(.disabled):not(.active) a:hover {
+    @apply bg-gray-50;
+}
+
+.pagination-simple li:not(.disabled):not(.active) a:focus {
+    @apply ring-2 ring-offset-2 ring-indigo-500;
+}
+
+/* Responsive pagination */
+@media (max-width: 640px) {
+    .pagination {
+        @apply flex-wrap gap-2;
+    }
+    
+    .pagination .page-item .page-link {
+        @apply px-3 py-1 text-xs;
+    }
+    
+    .pagination-simple li a,
+    .pagination-simple li span {
+        @apply px-2 py-1 text-xs;
+    }
+}
